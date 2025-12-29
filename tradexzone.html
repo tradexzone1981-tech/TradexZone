@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TradexZone – Transportation Solutions</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#1e3c72;
+    overflow-x:hidden;
+}
+
+/* ================= INTRO ================= */
+#intro{
+    position:fixed;
+    inset:0;
+    background:#ffffff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    animation:fadeOut 0.7s ease 3s forwards;
+}
+
+.intro-logo{
+    height:260px;
+    width:auto;
+    animation:logoZoom 2.5s ease;
+}
+
+@keyframes logoZoom{
+    0%{transform:scale(0.3);opacity:0;}
+    60%{opacity:1;}
+    100%{transform:scale(1);}
+}
+
+@keyframes fadeOut{
+    to{opacity:0;visibility:hidden;}
+}
+
+/* ================= MAIN ================= */
+#main-content{
+    opacity:0;
+    animation:fadeIn 1s ease 3.5s forwards;
+}
+
+@keyframes fadeIn{
+    to{opacity:1;}
+}
+
+/* ================= NAVBAR ================= */
+nav{
+    position:sticky;
+    top:0;
+    background:#1e3c72;
+    padding:12px 40px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+    z-index:100;
+}
+
+.nav-inner{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.nav-left{
+    display:inline-block;
+    height:40px;
+}
+
+.nav-left img{
+    height:40px;
+    width:auto;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+}
+
+nav ul{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+/* ================= HERO ================= */
+header{
+    background:#ffffff;
+    color:#1e3c72;
+    padding:120px 20px;
+    text-align:center;
+}
+
+.hero-logo{
+    height:320px;
+    width:320px;
+    margin-bottom:25px;
+}
+
+header h2{
+    font-size:34px;
+    font-weight:500;
+    max-width:800px;
+    margin:auto;
+    opacity:0.95;
+}
+
+/* ================= SECTIONS ================= */
+section{
+    padding:80px 20px;
+    max-width:1200px;
+    margin:auto;
+    background:#1e3c72;
+}
+
+.section-title{
+    text-align:center;
+    font-size:38px;
+    color:white;
+    margin-bottom:50px;
+}
+
+/* ================= ABOUT ================= */
+.about p{
+    font-size:18px;
+    line-height:1.8;
+    color:#e0e0e0;
+    text-align:center;
+    max-width:900px;
+    margin:auto;
+}
+
+/* ================= SERVICES ================= */
+.services{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.service-card{
+    background:#ffffff;
+    padding:35px;
+    border-radius:14px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.service-card h3{
+    color:#1e3c72;
+    margin-bottom:15px;
+}
+
+.service-card p{
+    color:#555;
+}
+
+/* ================= CONTACT ================= */
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+}
+
+.contact-box{
+    background:#ffffff;
+    padding:35px;
+    border-radius:14px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.contact-box h3{
+    color:#1e3c72;
+    margin-bottom:10px;
+}
+
+.contact-box a{
+    text-decoration:none;
+    color:#1e3c72;
+    transition:0.3s;
+}
+
+.contact-box a:hover{
+    color:#ff4c00;
+    text-decoration:underline;
+}
+
+/* ================= FOOTER ================= */
+footer{
+    background:#ffffff;
+    color:#1e3c72;
+    text-align:center;
+    padding:30px;
+}
+
+.footer-logo{
+    height:42px;
+    width:auto;
+    margin-bottom:12px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+    .intro-logo{height:200px;}
+    .hero-logo{height:130px;}
+    header h2{font-size:26px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+    <img src="logo.png" alt="TradexZone Logo" class="intro-logo">
+</div>
+
+<div id="main-content">
+
+<!-- NAVBAR -->
+<nav>
+    <div class="nav-inner">
+        <div class="nav-left">
+            <img src="logo.png" alt="TradexZone Logo">
+        </div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header>
+    <img src="logo.png" alt="TradexZone Logo" class="hero-logo">
+    <h2>Global Transportation & Logistics Solutions You Can Trust</h2>
+</header>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <h2 class="section-title">About Us</h2>
+    <p>
+        TradexZone delivers reliable, efficient, and secure transportation and logistics solutions designed for businesses of all sizes.
+        We specialize in seamless freight movement across regions and international borders, ensuring your goods reach their destination on time.
+        Our services are built on precision, transparency, and advanced logistics planning to meet modern business demands.
+        With smart routing and a network of trusted partners, we optimize every step of the supply chain.
+        Safety and security are at the core of our operations, giving you peace of mind for every shipment.
+        We focus on cost-effective solutions without compromising speed or reliability.
+        TradexZone empowers businesses to grow and scale with dependable, end-to-end logistics support.
+    </p>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services">
+        <div class="service-card">
+            <h3>🚚 Freight Transport</h3>
+            <p>Domestic & international freight services with real-time tracking.</p>
+        </div>
+        <div class="service-card">
+            <h3>📦 Logistics Management</h3>
+            <p>Optimized supply chain operations for maximum efficiency.</p>
+        </div>
+        <div class="service-card">
+            <h3>⏱ Express Delivery</h3>
+            <p>Fast, secure deliveries for time-sensitive shipments.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-grid">
+        <div class="contact-box">
+            <h3>📞 Phone / WhatsApp</h3>
+            <p>
+                <a href="tel:+919695795695">+91 9695795695</a> | 
+                <a href="https://wa.me/919695795695" target="_blank">WhatsApp</a>
+            </p>
+        </div>
+        <div class="contact-box">
+            <h3>📧 Email</h3>
+            <p>
+                <a href="mailto:tradexzone1981@gmail.com">tradexzone1981@gmail.com</a>
+            </p>
+        </div>
+        <div class="contact-box">
+            <h3>📍 Address</h3>
+            <p>
+                <a href="https://www.google.com/maps/place/Art+'n'+Design+Hub/@28.8717283,77.1207773,17z/data=!3m1!4b1!4m6!3m5!1s0x390dab335745b3c3:0xdd3e6e33ba6b88b4!8m2!3d28.8717283!4d77.1233522!16s%2Fg%2F11yftbnsqz?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                    Dhaiya Complex, FF, Shop No.-10<br>
+                    Near Pram Nursing Home, Kundali<br>
+                    Sonipat, Haryana – 131028
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <img src="logo.png" class="footer-logo" alt="TradexZone Logo">
+    <p>© 2024 TradexZone. All Rights Reserved.</p>
+</footer>
+
+</div>
+</body>
+</html>
