@@ -20,6 +20,33 @@ body{
     overflow-x:hidden;
 }
 
+/* ================= MOVING PHONE BAR ================= */
+.top-phone-bar{
+    width:100%;
+    background:#000;
+    overflow:hidden;
+    white-space:nowrap;
+    padding:10px 0;
+}
+
+.phone-move{
+    display:inline-block;
+    padding-left:100%;
+    animation:moveText 20s linear infinite;
+}
+
+.phone-move a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    font-size:16px;
+}
+
+@keyframes moveText{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-100%); }
+}
+
 /* ================= INTRO ================= */
 #intro{
     position:fixed;
@@ -34,7 +61,6 @@ body{
 
 .intro-logo{
     height:260px;
-    width:auto;
     animation:logoZoom 2.5s ease;
 }
 
@@ -72,52 +98,35 @@ nav{
     max-width:1200px;
     margin:auto;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-}
-
-.nav-left{
-    display:inline-block;
-    height:40px;
 }
 
 .nav-left img{
     height:40px;
-    width:auto;
-}
-
-nav a{
-    text-decoration:none;
-    color:white;
-    font-weight:500;
-}
-
-nav ul{
-    display:flex;
-    gap:30px;
-    list-style:none;
 }
 
 /* ================= HERO ================= */
 header{
-    background:#ffffff;
-    color:#1e3c72;
-    padding:120px 20px;
+    background:
+        linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5)),
+        url("bg.png");
+    background-size:cover;
+    background-position:center;
     text-align:center;
+    padding:120px 20px;
+    color:#1e3c72;
 }
 
 .hero-logo{
-    height:320px;
-    width:320px;
+    height:500px;
+    width:500px;
     margin-bottom:25px;
 }
 
 header h2{
     font-size:34px;
-    font-weight:500;
     max-width:800px;
     margin:auto;
-    opacity:0.95;
 }
 
 /* ================= SECTIONS ================= */
@@ -125,7 +134,6 @@ section{
     padding:80px 20px;
     max-width:1200px;
     margin:auto;
-    background:#1e3c72;
 }
 
 .section-title{
@@ -153,20 +161,10 @@ section{
 }
 
 .service-card{
-    background:#ffffff;
+    background:#fff;
     padding:35px;
     border-radius:14px;
     text-align:center;
-    transition:0.3s;
-}
-
-.service-card h3{
-    color:#1e3c72;
-    margin-bottom:15px;
-}
-
-.service-card p{
-    color:#555;
 }
 
 /* ================= CONTACT ================= */
@@ -177,148 +175,113 @@ section{
 }
 
 .contact-box{
-    background:#ffffff;
+    background:#fff;
     padding:35px;
     border-radius:14px;
     text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-
-.contact-box h3{
-    color:#1e3c72;
-    margin-bottom:10px;
 }
 
 .contact-box a{
     text-decoration:none;
     color:#1e3c72;
-    transition:0.3s;
-}
-
-.contact-box a:hover{
-    color:#ff4c00;
-    text-decoration:underline;
 }
 
 /* ================= FOOTER ================= */
 footer{
     background:#ffffff;
-    color:#1e3c72;
     text-align:center;
     padding:30px;
 }
 
 .footer-logo{
     height:42px;
-    width:auto;
-    margin-bottom:12px;
 }
 
 /* ================= RESPONSIVE ================= */
 @media(max-width:768px){
-    .intro-logo{height:200px;}
-    .hero-logo{height:130px;}
-    header h2{font-size:26px;}
+    .hero-logo{height:180px;width:auto;}
+    header h2{font-size:24px;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- MOVING PHONE BAR -->
+<div class="top-phone-bar">
+    <div class="phone-move">
+        <a href="tel:+919695795695">
+            📞 Call Us Now +91 9695795695 | Reliable Transportation & Logistics Solutions
+        </a>
+    </div>
+</div>
+
 <!-- INTRO -->
 <div id="intro">
-    <img src="logo.png" alt="TradexZone Logo" class="intro-logo">
+    <img src="logo.png" class="intro-logo">
 </div>
 
 <div id="main-content">
 
 <!-- NAVBAR -->
-<nav>
-    <div class="nav-inner">
-        <div class="nav-left">
-            <img src="logo.png" alt="TradexZone Logo">
-        </div>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-</nav>
+
 
 <!-- HERO -->
 <header>
-    <img src="logo.png" alt="TradexZone Logo" class="hero-logo">
+    <img src="logo.png" class="hero-logo">
     <h2>Global Transportation & Logistics Solutions You Can Trust</h2>
 </header>
 
 <!-- ABOUT -->
-<section class="about" id="about">
+<section class="about">
     <h2 class="section-title">About Us</h2>
     <p>
         TradexZone delivers reliable, efficient, and secure transportation and logistics solutions designed for businesses of all sizes.
-        We specialize in seamless freight movement across regions and international borders, ensuring your goods reach their destination on time.
-        Our services are built on precision, transparency, and advanced logistics planning to meet modern business demands.
-        With smart routing and a network of trusted partners, we optimize every step of the supply chain.
-        Safety and security are at the core of our operations, giving you peace of mind for every shipment.
-        We focus on cost-effective solutions without compromising speed or reliability.
-        TradexZone empowers businesses to grow and scale with dependable, end-to-end logistics support.
+        We specialize in seamless freight movement across regions, ensuring your goods reach their destination on time.
+        Our services are built on precision, transparency, and advanced logistics planning.
+        Safety and security are at the core of our operations.
+        TradexZone empowers businesses to grow with dependable logistics support.
     </p>
 </section>
 
 <!-- SERVICES -->
-<section id="services">
+<section>
     <h2 class="section-title">Our Services</h2>
     <div class="services">
         <div class="service-card">
             <h3>🚚 Freight Transport</h3>
-            <p>Domestic & international freight services with real-time tracking.</p>
+            <p>Domestic freight with real-time tracking.</p>
         </div>
         <div class="service-card">
             <h3>📦 Logistics Management</h3>
-            <p>Optimized supply chain operations for maximum efficiency.</p>
+            <p>Optimized supply chain operations.</p>
         </div>
         <div class="service-card">
             <h3>⏱ Express Delivery</h3>
-            <p>Fast, secure deliveries for time-sensitive shipments.</p>
+            <p>Fast & secure deliveries.</p>
         </div>
     </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
+<section>
     <h2 class="section-title">Contact Us</h2>
     <div class="contact-grid">
         <div class="contact-box">
             <h3>📞 Phone / WhatsApp</h3>
-            <p>
-                <a href="tel:+919695795695">+91 9695795695</a> | 
-                <a href="https://wa.me/919695795695" target="_blank">WhatsApp</a>
-            </p>
+            <a href="tel:+919695795695">+91 96957 95695</a>
         </div>
         <div class="contact-box">
             <h3>📧 Email</h3>
-            <p>
-                <a href="mailto:tradexzone1981@gmail.com">tradexzone1981@gmail.com</a>
-            </p>
-        </div>
-        <div class="contact-box">
-            <h3>📍 Address</h3>
-            <p>
-                <a href="https://www.google.com/maps/place/Art+'n'+Design+Hub/@28.8717283,77.1207773,17z/data=!3m1!4b1!4m6!3m5!1s0x390dab335745b3c3:0xdd3e6e33ba6b88b4!8m2!3d28.8717283!4d77.1233522!16s%2Fg%2F11yftbnsqz?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-                    Dhaiya Complex, FF, Shop No.-10<br>
-                    Near Pram Nursing Home, Kundali<br>
-                    Sonipat, Haryana – 131028
-                </a>
-            </p>
+            <a href="mailto:tradexzone1981@gmail.com">tradexzone1981@gmail.com</a>
         </div>
     </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-    <img src="logo.png" class="footer-logo" alt="TradexZone Logo">
-    <p>© 2024 TradexZone. All Rights Reserved.</p>
+    <img src="logo.png" class="footer-logo">
+    <p>© 2026 TradexZone. All Rights Reserved.</p>
 </footer>
 
 </div>
