@@ -204,18 +204,67 @@ footer{
 }
 
 
-/* ================= ENQUIRY FORM (FIXED SIDE) ================= */
+/* ================= COLLAPSIBLE ENQUIRY FORM ================= */
 .enquiry-form{
     position:fixed;
-    right:20px;
+    right:0;
     top:50%;
     transform:translateY(-50%);
     width:320px;
     background:#ffffff;
-    padding:20px;
-    border-radius:14px;
+    border-radius:14px 0 0 14px;
     box-shadow:0 10px 30px rgba(0,0,0,0.25);
     z-index:999;
+    transition:all 0.3s ease;
+}
+
+.enquiry-form.collapsed{
+    width:60px;
+    height:auto;
+    right:0;
+    background:transparent;
+    box-shadow:none;
+}
+
+.enquiry-tab{
+    background:#1e3c72;
+    color:#fff;
+    padding:15px 20px;
+    border-radius:14px 0 0 14px;
+    cursor:pointer;
+    font-weight:600;
+    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    white-space:nowrap;
+}
+
+.enquiry-form.collapsed .enquiry-tab{
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    padding:20px 15px;
+    border-radius:14px 14px 0 0;
+}
+
+.enquiry-tab:hover{
+    background:#16315e;
+}
+
+.enquiry-content{
+    padding:20px;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease;
+}
+
+.enquiry-form.expanded .enquiry-content{
+    max-height:600px;
+}
+
+.enquiry-form.collapsed .enquiry-content{
+    display:none;
 }
 
 .enquiry-form h3{
@@ -240,7 +289,7 @@ footer{
     height:80px;
 }
 
-.enquiry-form button{
+.enquiry-form button[type="submit"]{
     width:100%;
     padding:12px;
     background:#1e3c72;
@@ -252,8 +301,41 @@ footer{
     cursor:pointer;
 }
 
-.enquiry-form button:hover{
+.enquiry-form button[type="submit"]:hover{
     background:#16315e;
+}
+
+.close-btn{
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:transparent;
+    border:none;
+    font-size:24px;
+    color:#1e3c72;
+    cursor:pointer;
+    width:30px;
+    height:30px;
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+.enquiry-form.expanded .close-btn{
+    display:flex;
+}
+
+.arrow-icon{
+    transition:transform 0.3s ease;
+    display:inline-block;
+}
+
+.enquiry-form.collapsed .arrow-icon{
+    display:none;
+}
+
+.enquiry-form.expanded .arrow-icon{
+    transform:rotate(180deg);
 }
 
 /* Hide on very small screens */
@@ -261,9 +343,16 @@ footer{
     .enquiry-form{
         width:90%;
         right:5%;
+        left:5%;
         top:auto;
         bottom:20px;
         transform:none;
+    }
+    
+    .enquiry-form.collapsed{
+        width:auto;
+        left:auto;
+        right:5%;
     }
 }
 
@@ -361,41 +450,44 @@ Every TradexZone vehicle is GPS-enabled, allowing you to live-track your shipmen
     <img src="logo.png" class="footer-logo">
     <p>© 2026 TradexZone. All Rights Reserved.</p>
 </footer>
-<!-- FIXED ENQUIRY FORM -->
-<div class="enquiry-form">
-    <h3>Quick Enquiry</h3>
 
-    <form action="https://formsubmit.co/tradexzone1981@gmail.com" method="POST">
-        
-        <!-- Disable captcha -->
-        <input type="hidden" name="_captcha" value="false">
+<!-- COLLAPSIBLE ENQUIRY FORM -->
+<div class="enquiry-form collapsed" id="enquiryForm">
+    <button class="close-btn" onclick="toggleForm()">×</button>
+    
+    <div class="enquiry-tab" onclick="toggleForm()">
+        <span>Quick Enquiry</span>
+        <span class="arrow-icon">▼</span>
+    </div>
+    
+    <div class="enquiry-content">
+        <h3>Send Your Enquiry</h3>
 
-        <!-- Email subject -->
-        <input type="hidden" name="_subject" value="New Enquiry from TradexZone Website">
+        <form action="https://formsubmit.co/tradexzone1981@gmail.com" method="POST">
+            
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New Enquiry from TradexZone Website">
 
-        <!-- Redirect after submit (optional) -->
-        <input type="hidden" name="_next" value="https://yourwebsite.com/thankyou.html">
+            <input type="text" name="Person Name" placeholder="Person Name" required>
+            <input type="text" name="Designation" placeholder="Designation" required>
+            <input type="text" name="Company Name" placeholder="Company Name" required>
+            <input type="tel" name="Contact Number" placeholder="Contact Number" required>
+            <input type="email" name="Email ID" placeholder="Email ID" required>
+            <textarea name="Enquiry" placeholder="Your Enquiry" required></textarea>
 
-        <input type="text" name="Person Name" placeholder="Person Name" required>
-
-        <input type="text" name="Designation" placeholder="Designation" required>
-
-        <input type="text" name="Company Name" placeholder="Company Name" required>
-
-        <input type="tel" name="Contact Number" placeholder="Contact Number" required>
-
-        <input type="email" name="Email ID" placeholder="Email ID" required>
-
-        <textarea name="Enquiry" placeholder="Your Enquiry" required></textarea>
-
-        <button type="submit">Submit Enquiry</button>
-    </form>
+            <button type="submit">Submit Enquiry</button>
+        </form>
+    </div>
 </div>
 
+<script>
+function toggleForm() {
+    const form = document.getElementById('enquiryForm');
+    form.classList.toggle('collapsed');
+    form.classList.toggle('expanded');
+}
+</script>
 
 </div>
 </body>
 </html>
-
-
-
