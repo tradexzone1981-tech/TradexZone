@@ -202,6 +202,71 @@ footer{
     .hero-logo{height:180px;width:auto;}
     header h2{font-size:24px;}
 }
+
+
+/* ================= ENQUIRY FORM (FIXED SIDE) ================= */
+.enquiry-form{
+    position:fixed;
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+    width:320px;
+    background:#ffffff;
+    padding:20px;
+    border-radius:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+    z-index:999;
+}
+
+.enquiry-form h3{
+    text-align:center;
+    margin-bottom:15px;
+    color:#1e3c72;
+}
+
+.enquiry-form input,
+.enquiry-form textarea{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+}
+
+.enquiry-form textarea{
+    resize:none;
+    height:80px;
+}
+
+.enquiry-form button{
+    width:100%;
+    padding:12px;
+    background:#1e3c72;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.enquiry-form button:hover{
+    background:#16315e;
+}
+
+/* Hide on very small screens */
+@media(max-width:768px){
+    .enquiry-form{
+        width:90%;
+        right:5%;
+        top:auto;
+        bottom:20px;
+        transform:none;
+    }
+}
+
 </style>
 </head>
 
@@ -296,11 +361,41 @@ Every TradexZone vehicle is GPS-enabled, allowing you to live-track your shipmen
     <img src="logo.png" class="footer-logo">
     <p>© 2026 TradexZone. All Rights Reserved.</p>
 </footer>
+<!-- FIXED ENQUIRY FORM -->
+<div class="enquiry-form">
+    <h3>Quick Enquiry</h3>
+
+    <form action="https://formsubmit.co/tradexzone1981@gmail.com" method="POST">
+        
+        <!-- Disable captcha -->
+        <input type="hidden" name="_captcha" value="false">
+
+        <!-- Email subject -->
+        <input type="hidden" name="_subject" value="New Enquiry from TradexZone Website">
+
+        <!-- Redirect after submit (optional) -->
+        <input type="hidden" name="_next" value="https://yourwebsite.com/thankyou.html">
+
+        <input type="text" name="Person Name" placeholder="Person Name" required>
+
+        <input type="text" name="Designation" placeholder="Designation" required>
+
+        <input type="text" name="Company Name" placeholder="Company Name" required>
+
+        <input type="tel" name="Contact Number" placeholder="Contact Number" required>
+
+        <input type="email" name="Email ID" placeholder="Email ID" required>
+
+        <textarea name="Enquiry" placeholder="Your Enquiry" required></textarea>
+
+        <button type="submit">Submit Enquiry</button>
+    </form>
+</div>
+
 
 </div>
 </body>
 </html>
-
 
 
 
