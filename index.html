@@ -305,11 +305,6 @@ footer{
     background:#16315e;
 }
 
-.enquiry-form button[type="submit"]:disabled{
-    background:#ccc;
-    cursor:not-allowed;
-}
-
 .close-btn{
     position:absolute;
     top:10px;
@@ -341,26 +336,6 @@ footer{
 
 .enquiry-form.expanded .arrow-icon{
     transform:rotate(180deg);
-}
-
-.success-message{
-    background:#4CAF50;
-    color:white;
-    padding:15px;
-    border-radius:8px;
-    text-align:center;
-    margin-bottom:15px;
-    display:none;
-}
-
-.error-message{
-    background:#f44336;
-    color:white;
-    padding:15px;
-    border-radius:8px;
-    text-align:center;
-    margin-bottom:15px;
-    display:none;
 }
 
 /* Hide on very small screens */
@@ -486,24 +461,37 @@ Every TradexZone vehicle is GPS-enabled, allowing you to live-track your shipmen
     </div>
     
     <div class="enquiry-content">
-        <div class="success-message" id="successMsg">
-            ✓ Enquiry submitted successfully! Check your email for confirmation.
-        </div>
-        <div class="error-message" id="errorMsg">
-            ✗ Failed to send. Please try again or call us directly.
-        </div>
-        
         <h3>Send Your Enquiry</h3>
 
-        <form id="enquiryFormElement" onsubmit="submitEnquiry(event)">
-            <input type="text" name="person_name" id="personName" placeholder="Person Name" required>
-            <input type="text" name="designation" id="designation" placeholder="Designation" required>
-            <input type="text" name="company_name" id="companyName" placeholder="Company Name" required>
-            <input type="tel" name="contact_number" id="contactNumber" placeholder="Contact Number" required>
-            <input type="email" name="email" id="email" placeholder="Email ID" required>
-            <textarea name="enquiry" id="enquiry" placeholder="Your Enquiry" required></textarea>
+        <form action="https://formsubmit.co/tradexzone1981@gmail.com" method="POST">
+            
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New Enquiry from TradexZone Website">
+            
+            <!-- Auto-reply settings -->
+            <input type="hidden" name="_autoresponse" value="Thank you for contacting TradexZone!
 
-            <button type="submit" id="submitBtn">Submit Enquiry</button>
+We have successfully received your enquiry and our team will review it shortly. 
+
+One of our logistics experts will get back to you within 24 hours to discuss your transportation and logistics requirements.
+
+In the meantime, if you have any urgent queries, please feel free to contact us at:
+📞 Phone/WhatsApp: +91 9695795695
+📧 Email: tradexzone1981@gmail.com
+
+Thank you for choosing TradexZone - Your trusted partner in transportation solutions.
+
+Best regards,
+TradexZone Team">
+
+            <input type="text" name="Person Name" placeholder="Person Name" required>
+            <input type="text" name="Designation" placeholder="Designation" required>
+            <input type="text" name="Company Name" placeholder="Company Name" required>
+            <input type="tel" name="Contact Number" placeholder="Contact Number" required>
+            <input type="email" name="Email ID" placeholder="Email ID" required>
+            <textarea name="Enquiry" placeholder="Your Enquiry" required></textarea>
+
+            <button type="submit">Submit Enquiry</button>
         </form>
     </div>
 </div>
@@ -513,59 +501,6 @@ function toggleForm() {
     const form = document.getElementById('enquiryForm');
     form.classList.toggle('collapsed');
     form.classList.toggle('expanded');
-}
-
-async function submitEnquiry(e) {
-    e.preventDefault();
-    
-    const submitBtn = document.getElementById('submitBtn');
-    const successMsg = document.getElementById('successMsg');
-    const errorMsg = document.getElementById('errorMsg');
-    
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-    successMsg.style.display = 'none';
-    errorMsg.style.display = 'none';
-    
-    const formData = {
-        personName: document.getElementById('personName').value,
-        designation: document.getElementById('designation').value,
-        companyName: document.getElementById('companyName').value,
-        contactNumber: document.getElementById('contactNumber').value,
-        email: document.getElementById('email').value,
-        enquiry: document.getElementById('enquiry').value
-    };
-
-    try {
-        // Replace with your Google Apps Script Web App URL
-        const response = await fetch('YOUR_GOOGLE_SCRIPT_URL', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
-
-        // With no-cors, we can't check response, so assume success
-        successMsg.style.display = 'block';
-        document.getElementById('enquiryFormElement').reset();
-        
-        setTimeout(() => {
-            successMsg.style.display = 'none';
-        }, 5000);
-        
-    } catch (error) {
-        console.error('Error:', error);
-        errorMsg.style.display = 'block';
-        
-        setTimeout(() => {
-            errorMsg.style.display = 'none';
-        }, 5000);
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Enquiry';
-    }
 }
 </script>
 
