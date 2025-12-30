@@ -305,6 +305,11 @@ footer{
     background:#16315e;
 }
 
+.enquiry-form button[type="submit"]:disabled{
+    background:#ccc;
+    cursor:not-allowed;
+}
+
 .close-btn{
     position:absolute;
     top:10px;
@@ -336,6 +341,26 @@ footer{
 
 .enquiry-form.expanded .arrow-icon{
     transform:rotate(180deg);
+}
+
+.success-message{
+    background:#4CAF50;
+    color:white;
+    padding:15px;
+    border-radius:8px;
+    text-align:center;
+    margin-bottom:15px;
+    display:none;
+}
+
+.error-message{
+    background:#f44336;
+    color:white;
+    padding:15px;
+    border-radius:8px;
+    text-align:center;
+    margin-bottom:15px;
+    display:none;
 }
 
 /* Hide on very small screens */
@@ -461,46 +486,97 @@ Every TradexZone vehicle is GPS-enabled, allowing you to live-track your shipmen
     </div>
     
     <div class="enquiry-content">
+        <div class="success-message" id="successMsg">
+            ✓ Enquiry submitted successfully! Check your email for confirmation.
+        </div>
+        <div class="error-message" id="errorMsg">
+            ✗ Failed to send. Please try again or call us directly.
+        </div>
+        
         <h3>Send Your Enquiry</h3>
 
-        <form action="https://formsubmit.co/tradexzone1981@gmail.com" method="POST">
-            
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="New Enquiry from TradexZone Website">
-            
-            <!-- Auto-reply settings -->
-            <input type="hidden" name="_autoresponse" value="Thank you for contacting TradexZone!
+        <form id="enquiryFormElement" onsubmit="submitEnquiry(event)">
+            <input type="text" name="person_name" id="personName" placeholder="Person Name" required>
+            <input type="text" name="designation" id="designation" placeholder="Designation" required>
+            <input type="text" name="company_name" id="companyName" placeholder="Company Name" required>
+            <input type="tel" name="contact_number" id="contactNumber" placeholder="Contact Number" required>
+            <input type="email" name="email" id="email" placeholder="Email ID" required>
+            <textarea name="enquiry" id="enquiry" placeholder="Your Enquiry" required></textarea>
 
-We have successfully received your enquiry and our team will review it shortly. 
-
-One of our logistics experts will get back to you within 24 hours to discuss your transportation and logistics requirements.
-
-In the meantime, if you have any urgent queries, please feel free to contact us at:
-📞 Phone/WhatsApp: +91 9695795695
-📧 Email: tradexzone1981@gmail.com
-
-Thank you for choosing TradexZone - Your trusted partner in transportation solutions.
-
-Best regards,
-TradexZone Team">
-
-            <input type="text" name="Person Name" placeholder="Person Name" required>
-            <input type="text" name="Designation" placeholder="Designation" required>
-            <input type="text" name="Company Name" placeholder="Company Name" required>
-            <input type="tel" name="Contact Number" placeholder="Contact Number" required>
-            <input type="email" name="Email ID" placeholder="Email ID" required>
-            <textarea name="Enquiry" placeholder="Your Enquiry" required></textarea>
-
-            <button type="submit">Submit Enquiry</button>
+            <button type="submit" id="submitBtn">Submit Enquiry</button>
         </form>
     </div>
 </div>
 
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
 <script>
+// Initialize EmailJS with your Public Key
+(function(){
+    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual public key
+})();
+
 function toggleForm() {
     const form = document.getElementById('enquiryForm');
     form.classList.toggle('collapsed');
     form.classList.toggle('expanded');
+}
+
+function submitEnquiry(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMsg');
+    const errorMsg = document.getElementById('errorMsg');
+    
+    // Disable button and show loading
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+    
+    const formData = {
+        person_name: document.getElementById('personName').value,
+        designation: document.getElementById('designation').value,
+        company_name: document.getElementById('companyName').value,
+        contact_number: document.getElementById('contactNumber').value,
+        email: document.getElementById('email').value,
+        enquiry: document.getElementById('enquiry').value
+    };
+    
+    // Send to your email (you'll receive the enquiry)
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+        .then(function() {
+            // Send confirmation to customer
+            const confirmationData = {
+                to_email: formData.email,
+                person_name: formData.person_name,
+                company_name: formData.company_name
+            };
+            
+            return emailjs.send('YOUR_SERVICE_ID', 'YOUR_CONFIRMATION_TEMPLATE_ID', confirmationData);
+        })
+        .then(function() {
+            successMsg.style.display = 'block';
+            document.getElementById('enquiryFormElement').reset();
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Enquiry';
+            
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 5000);
+        })
+        .catch(function(error) {
+            console.error('Error:', error);
+            errorMsg.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Enquiry';
+            
+            setTimeout(() => {
+                errorMsg.style.display = 'none';
+            }, 5000);
+        });
 }
 </script>
 
